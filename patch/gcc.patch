@@ -1,0 +1,12 @@
+--- gcc-13.2.0/gcc/config/or1k/elf.h	2023-07-27 10:13:04.000000000 +0200
++++ elf.h	2023-09-20 17:44:19.593054865 +0200
+@@ -22,8 +22,7 @@
+ #define GCC_OR1K_ELF_H
+ 
+ #undef  LIB_SPEC
+-#define LIB_SPEC "--start-group -lc -lor1k "			\
+-  "%{mboard=*:-lboard-%*; :-lboard-or1ksim} --end-group"
++#define LIB_SPEC "--start-group --end-group"
+ 
+ #undef	LINK_SPEC
+ #define LINK_SPEC "%{h*}			\
