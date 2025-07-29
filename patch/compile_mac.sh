@@ -1,10 +1,6 @@
 #!/bin/bash
 mkdir sandbox
 cd sandbox
-alias gcc='gcc-13'
-alias c++='g++-13'
-alias g++='g++-13'
-alias cc='gcc-13'
 rm -rf *
 tar -xvf ../../gnu_src/binutils-2.44.tar.bz2
 cd binutils-2.44/
@@ -12,7 +8,11 @@ rsync -av ../../../gnu_src/cgen .
 ./configure -target=or1k-elf --disable-werror --prefix=/opt/or1k_toolchain
 make -j$(sysctl -n hw.ncpu) all
 cd opcodes/
+mkdir ~/or1k
+ln -s /usr/local/bin/gsed ~/or1k/sed
+export PATH=~/or1k/:$PATH
 make stamp-or1k
+rm -r ~/or1k
 cd ..
 make -j$(sysctl -n hw.ncpu) all
 make install
