@@ -16,6 +16,9 @@ make install
 cd ..
 tar -xvf ../../gnu_src/gcc-15.2.0.tar.gz
 patch -u gcc-15.2.0/gcc/config/or1k/elf.h -i ../gcc.patch
+cd gcc-15.2.0
+./contrib/download_prerequisites
+cd ..
 mkdir gcc
 cd gcc/
 ../gcc-15.2.0/configure --target=or1k-elf  --prefix=/opt/or1k_toolchain --with-gnu-as --with-gnu-ld --verbose --enable-languages=c --disable-libssp --disable-shared --disable-werror
