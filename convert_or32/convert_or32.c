@@ -231,8 +231,7 @@ int main(int argc , char **argv)
     int repeatcount = 1;
     int linelength = 0;
     for (loop = 0; loop < (unsigned int) current->info.block_size; loop++) {
-      if (current->info.empty_data != 0) break;
-      int value = (unsigned int)current->info.memory_content[loop];
+      int value = (current->info.empty_data != 0) ? 0 : (unsigned int)current->info.memory_content[loop];
       if ((loop % 0x200) == 0)
         fprintf( mem_pointer, "\n@%x\n", (loop*4)+baseAddress);
       fprintf( mem_pointer, "%08X ", value);
